@@ -1,54 +1,150 @@
 <!DOCTYPE html>
-<html lang="zh-TW"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>友達 2409 盤後分析 2026-10-20</title>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>友達(2409) 盤後解析 20261020</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI","Microsoft JhengHei",sans-serif}
-body{background:#f1f5f9;color:#1e293b;min-height:100vh;padding:24px 16px}
-.card{max-width:640px;margin:0 auto;background:#ffffff;border-radius:18px;padding:26px 24px;box-shadow:0 4px 20px rgba(0,0,0,.1)}
-h1{font-size:1.3rem;color:#0f172a} .sub{color:#64748b;font-size:.8rem;margin-top:4px}
-.price-block{display:flex;gap:18px;align-items:baseline;margin:18px 0}
-.price{font-size:2.4rem;font-weight:800} .chg{font-size:1rem;font-weight:700}
-.up{color:#dc2626} .down{color:#16a34a}
-.light{display:inline-block;margin:4px 6px 0 0;padding:5px 12px;border-radius:20px;font-size:.8rem;font-weight:600}
-.light.on{background:#dcfce7;color:#16a34a;border:1px solid #86efac}
-.light.off{background:#f1f5f9;color:#94a3b8;border:1px solid #cbd5e1}
-h2{font-size:.95rem;color:#1d4ed8;margin:20px 0 8px}
-table{width:100%;border-collapse:collapse;font-size:.88rem}
-.inst th,.inst td{padding:6px 8px;border-bottom:1px solid #e2e8f0;text-align:left;color:#334155}
-.inst .tot{font-weight:800;color:#0f172a}
-ul.news{padding-left:18px} ul.news li{margin:6px 0;font-size:.88rem;line-height:1.5;color:#334155}
-a{color:#2563eb} .muted{color:#94a3b8;font-size:.85rem}
-.analysis li{margin:8px 0 8px 18px;font-size:.9rem;line-height:1.6;color:#334155}
-.pts td{padding:4px 8px;border-bottom:1px solid #e2e8f0;color:#334155}
-.footer{margin-top:22px;font-size:.75rem;color:#94a3b8;line-height:1.7}
-</style></head><body>
-<div class="card">
-<h1>🖥️ 友達 2409・每日盤後分析</h1>
-<div class="sub">2026-10-20（週二・17:00 自動更新）</div>
-<div class="price-block">
-<div class="price down">35.75</div>
-<div><div class="chg down">-2.59%（20261020）</div>
-<div class="muted">成交量 375694 張</div></div>
-</div>
-<div class="muted" style="margin-bottom:2px">訊號面板</div>
-<span class="light on">🔥 375,694 張（突破門檻 20,000）</span><span class="light off">🟡 外資賣超 -3161.0萬</span><span class="light on">🟢 投信買超 +305.7萬</span><span class="light on">📰 有相關新聞（Micro LED, CPO）</span>
-<h2>💡 當日分析</h2>
-<ul class="analysis"><li>目標價 40：現價 35.75，距目標 +11.9%。</li><li>賣點 40.0 / 42.41 / 45.0：已站過 0 個。</li><li>停損 33.5：現價在其上方，結構未破壞。</li><li>三大法人（2026-10-20）賣超 3030.1萬 股，其中外資 賣超 3161.0萬 股。</li><li>四項訊號亮燈 3/4，達主升段條件（≥3）。</li><li>今日新聞 6 則，關鍵訊息已列於下方。</li></ul>
+  :root {
+    --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#e6edf3; --muted:#8b949e;
+    --up:#e5484d; --down:#2f9e44; --accent:#4f46e5;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text);
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    padding:24px; max-width:1080px; margin:0 auto; }
+  h1 { font-size:22px; margin-bottom:4px; }
+  .sub { color:var(--muted); font-size:13px; margin-bottom:18px; }
+  .price-line { font-size:38px; font-weight:700; color:#2f9e44; }
+  .chg { font-size:15px; color:#2f9e44; margin-bottom:16px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px;
+    margin:16px 0 24px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:10px;
+    padding:14px 16px; }
+  .card .k { color:var(--muted); font-size:12px; margin-bottom:4px; }
+  .card .v { font-size:19px; font-weight:600; }
+  .up { color:var(--up); } .down { color:var(--down); }
+  .chart-card { background:var(--card); border:1px solid var(--border); border-radius:10px;
+    padding:18px; margin-bottom:20px; }
+  .chart-card h2 { font-size:15px; margin-bottom:12px; font-weight:600; }
+  .section { font-size:17px; font-weight:700; margin:26px 0 12px;
+    border-left:4px solid var(--accent); padding-left:10px; }
+  ul { list-style:none; }
+  li { padding:6px 0 6px 16px; position:relative; color:var(--text); font-size:14px;
+    line-height:1.7; }
+  li::before { content:"▸"; position:absolute; left:0; color:var(--accent); }
+  table { width:100%; border-collapse:collapse; font-size:13px; margin-top:8px; }
+  th, td { padding:8px 10px; border-bottom:1px solid var(--border); text-align:right; }
+  th { color:var(--muted); font-weight:500; text-align:right; }
+  td:first-child, th:first-child { text-align:left; }
+  footer { color:var(--muted); font-size:11px; margin-top:28px; border-top:1px solid var(--border);
+    padding-top:12px; line-height:1.8; }
+</style>
+</head>
+<body>
 
-<h2>🏦 三大法人買賣超（2026-10-20）</h2>
-<table class="inst">
-<tr><th></th><th>外資</th><th>投信</th><th>券商</th></tr>
-<tr><td>淨買超（万股）</td><td>-3,161.0 萬</td><td>+305.7 萬</td><td>-174.8 萬</td></tr>
-<tr><td>合計</td><td colspan="3" class="tot">-3,030.1 萬 股</td></tr>
-</table>
-<h2>📰 今日新聞</h2><ul class="news"><li><a href="https://news.google.com/rss/articles/CBMiuwNBVV95cUxNZHl2VnlvMHY4S1ZqQ3FadFE4Y3o4ZGVOTldOVG5MemVDQ2JqUU5YTmktZTRBc2dTa3ViZUNlM3ExUVhCRThfazNFNkdnc0RnSmgzOUl1QnNmQ3dHT2I1Vm9iOUJsdFNmeW8tLVJUd01ycHRsTy1pSlEwcjFSYU81ZGxHYXJmMklBQnVtNzlFYTVvMGFEbUJjUlBYcGo4SVBUMFh6SGFFaHlWUEw0ZmM5TXU4OURUdkRZU0tZYXBEVHZ6VFd1aEl6eVg5ZjA0UkZvNXRZRVY2dTk2dmJxQnp5UnF1UG94ZHpMbWplbFUySVA4MldRMkhBSGVteEROTmlOWlRaUEp0aV96YlZ0bXppVVBjcndDM1dneE9LQVBzMkdiLUd6Yk1oRDZpd3M2QXEyclJ4cWZvaGpfZkFGSWM1eXZISlJueTg3RzZHZU5tUzFjUk03NXBZdnR1ZXJFY0UzRjdhcl9fX0UzOUZ5cDA3dWNpQml6SVltLXdGSV9SMWJEUnoxVjUzVTFfWGFoZ3gydzQyaVVRb3pIWHpxV0l0ak5tTVFNNlE2ZmlSV3kzLUlSN3VtYlYtNEp1VQ?oc=5" target="_blank" rel="noopener">友達連2漲逾5%！成交量衝台股第二大 分析師曝關鍵價：有望挑戰前高 - Yahoo股市</a></li><li><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE5fQjRlR05JNk1ZVk1QdWNNR1I3LThjUjQwekxaTGxqTVJOS0M2QlRBZE5kUFUzSUpnWWo5WndaR3I1QnNLVi1MYnc1Z1pmLXdhR0lnekVuMkpoUnZjdGlOS0QzS1FQdEVZTDdQRkY4TQ?oc=5" target="_blank" rel="noopener">友達盤中爆量18萬張、強攻AI玻璃基板！廣達百億買廠助攻，大戶卻趁機減碼？ - 理財周刊</a></li><li><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFAyZHpCLVpNZUFFdmhzb2x0eEtmXzlxVkthb3hkMmlNZ3d4cWJoTk16bG0ySVNkUVdIWjVhdXcxdUhpWVdMelZhTWpDWUtnT0p3bGs5MEttTmFCN245NDNn?oc=5" target="_blank" rel="noopener">10／20盤中熱門焦點股- 證券 - 工商時報</a></li><li><a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTE9iSnd3Nk5rOVhYMGxIYmIwclVFQ3c1QTBpY3hPWEpCaGN0amtUdS1GYUk0S2tudXN1ZDVTN1VXZU5yRXZFUXRpZEdmUWJiMmVxaVNSdnl2eXk?oc=5" target="_blank" rel="noopener">2409 友達 - 有下來３５再繼續補- 股市爆料同學會 - CMoney</a></li><li><a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTFBoQS0yejd5UHcwaGZ0QlNNOEZxbGlqNFVPeG1vT0xTQkhjWFBCM1RRTzkxNmdsMnF5MGg5bGFKOXpKdFJqcnJWdlFtM1ZQcUExbkMyMkRtTDY?oc=5" target="_blank" rel="noopener">2409 友達 - 看到放空訊號了🤭🤭🤭 - 股市爆料同學會 - CMoney</a></li><li><a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTE9WcU9yZnI5cFVJUUZoZjdXRFVYRG5ZcFpSYlNxb2s1Nzc0OEo4eEozaGJZYmxOcTk2NThQamNiSjhoWndfb2hGTVNuYVJFVmZqRVRyWllpOHo?oc=5" target="_blank" rel="noopener">2409 友達 - 友達集團將Micro LED CPO 發光發熱，集團資源。 - 股市爆料同學會 - CMoney</a></li></ul>
-<h2>📍 賣點 / 停損參考（9/30 訂定）</h2>
-<table class="pts"><tr><td>40.0</td><td>第一賣點：心理關卡 PBR≈1.55 倍。賣一半</td></tr><tr><td>42.41</td><td>第二賣點：連續漲停價。外資續買才有機會</td></tr><tr><td>45.0</td><td>第三賣點：CPO 題材續燒的上限。PBR 1.7 倍歷史高位</td></tr>
-<tr><td style="color:#dc2626;font-weight:700">33.5</td><td>跌破 33–34 支撐（9/22-24 密集交易區）代表外資走了</td></tr>
-</table>
-<div class="footer">
-資料來源：TWSE MIS API（股價）、TWSE 法人買賣超日報、Google News RSS。<br>
-歷史存檔：<a href="history/">history/</a> ・ 本頁每個交易日 17:00（台北）自動更新。僅供參考，不構成投資建議。
+<h1>友達（2409）盤後解析</h1>
+<div class="sub">資料日期：2026-10-20 · 台北時間 2026-10-20 17:00 產出 · 資料來源：TWSE OpenAPI</div>
+
+<div class="price-line">35.75</div>
+<div class="chg">▼ -2.59%（前收 36.70）</div>
+
+<div class="grid">
+  <div class="card"><div class="k">開盤 / 最高 / 最低</div><div class="v" style="font-size:15px">36.70 / 37.65 / 35.65</div></div>
+  <div class="card"><div class="k">成交量</div><div class="v">377.9 萬張</div></div>
+  <div class="card"><div class="k">20 日均量</div><div class="v">545.5 萬張</div></div>
+  <div class="card"><div class="k">量比（今日 / 20日）</div><div class="v">0.69</div></div>
+  <div class="card"><div class="k">MA5 / MA10 / MA20</div><div class="v" style="font-size:15px">35.90 / 36.12 / 36.09</div></div>
+  <div class="card"><div class="k">距 MA20</div><div class="v down">-0.9%</div></div>
+  <div class="card"><div class="k">RSI 14</div><div class="v">51.8</div></div>
+  <div class="card"><div class="k">3 個月高 / 低</div><div class="v" style="font-size:15px">43.55 / 23.40</div></div>
 </div>
-</div></body></html>
+
+<div class="chart-card">
+  <h2>收盤價與均線（近 3 個月）</h2>
+  <canvas id="priceChart"></canvas>
+</div>
+
+<div class="chart-card">
+  <h2>成交量（千股）</h2>
+  <canvas id="volChart"></canvas>
+</div>
+
+<div class="chart-card">
+  <h2>三大法人買賣超（近 5 日，張）</h2>
+  <canvas id="invChart"></canvas>
+</div>
+
+<div class="section">籌碼面</div>
+<table>
+  <tr><th>項目</th><th>買進</th><th>賣出</th><th>買賣超</th></tr>
+  <tr><td>外資（不含自營）</td><td colspan="3" style="text-align:right">-31,610 張</td></tr>
+  <tr><td>投信</td><td colspan="3" style="text-align:right">+3,057 張</td></tr>
+  <tr><td>自營商（含避險）</td><td colspan="3" style="text-align:right">-3,445 張</td></tr>
+  <tr><td><b>三大合計</b></td><td colspan="3" style="text-align:right"><b>-30,301 張</b></td></tr>
+</table>
+
+<div class="section">估值</div>
+<div class="grid">
+  <div class="card"><div class="k">本益比</div><div class="v">148.96</div></div>
+  <div class="card"><div class="k">股價淨值比</div><div class="v">1.75</div></div>
+  <div class="card"><div class="k">殖利率</div><div class="v">1.12%</div></div>
+</div>
+
+<div class="section">盤後解析</div>
+<ul>
+  <li>收盤 35.75，下跌 2.59%，開 36.70 高 37.65 低 35.65，K 線收黑，高低檔差 2.00 元（振幅 5.4%）。</li>
+  <li>成交量 377.9 萬張，為 20 日均量的 0.69 倍，屬於量縮走勢。</li>
+  <li>均線：MA5 35.90、MA10 36.12、MA20 36.09；股價在 MA20 之下（偏離 -0.9%），短線均線糾結排列。</li>
+  <li>RSI 14 = 51.8，中性，無明顯極端值。</li>
+  <li>三大法人今日合計賣超 30,301 張（外資 -31,610、投信 +3,057、自營 -3,445）。</li>
+  <li>3 個月區間 23.40 ~ 43.55，目前位置約在區間 61% 位置。</li>
+</ul>
+
+<footer>
+  本報告由 TWSE OpenAPI 資料自動產生（個股日K STOCK_DAY、三大法人 T86、本益比淨值比 BWIBBU）。<br>
+  資料僅供參考，不構成投資建議；請審酌自身風險承受度。
+</footer>
+
+<script>
+const labels = ["08-03", "08-04", "08-05", "08-06", "08-07", "08-10", "08-11", "08-12", "08-13", "08-14", "08-17", "08-18", "08-19", "08-20", "08-21", "08-24", "08-25", "08-26", "08-27", "08-28", "08-31", "09-01", "09-02", "09-03", "09-04", "09-07", "09-08", "09-09", "09-10", "09-11", "09-14", "09-15", "09-16", "09-17", "09-18", "09-21", "09-22", "09-23", "09-24", "09-29", "09-30", "10-01", "10-02", "10-05", "10-06", "10-07", "10-08", "10-12", "10-13", "10-14", "10-15", "10-16", "10-19", "10-20"];
+const grid = { color:"#30363d" };
+const tick = { color:"#8b949e" };
+
+new Chart(document.getElementById("priceChart"), {
+  type: "line",
+  data: { labels: labels, datasets: [
+    { label:"收盤", data:[23.9, 24.45, 24.45, 24.55, 24.55, 27.0, 26.1, 26.25, 25.75, 25.8, 27.25, 26.35, 26.15, 25.8, 25.6, 25.25, 25.65, 25.5, 25.25, 25.85, 26.65, 26.4, 26.4, 26.55, 26.8, 28.7, 29.6, 30.5, 31.2, 30.2, 28.7, 27.9, 29.4, 30.0, 30.35, 33.35, 36.65, 34.7, 34.2, 35.05, 38.55, 38.3, 40.45, 39.05, 37.45, 37.95, 36.6, 35.55, 34.15, 36.25, 34.9, 35.9, 36.7, 35.75], borderColor:"#4f46e5", backgroundColor:"rgba(79,70,229,.15)", fill:true, tension:.3, pointRadius:0, borderWidth:2 },
+    { label:"MA5", data:[null, null, null, null, 24.38, 25.0, 25.33, 25.69, 25.93, 26.18, 26.23, 26.28, 26.26, 26.27, 26.23, 25.83, 25.69, 25.56, 25.45, 25.5, 25.78, 25.93, 26.11, 26.37, 26.56, 26.97, 27.61, 28.43, 29.36, 30.04, 30.04, 29.7, 29.48, 29.24, 29.27, 30.2, 31.95, 33.01, 33.85, 34.79, 35.83, 36.16, 37.31, 38.28, 38.76, 38.64, 38.3, 37.32, 36.34, 36.1, 35.49, 35.35, 35.58, 35.9], borderColor:"#e5484d", tension:.3, pointRadius:0, borderWidth:1 },
+    { label:"MA20", data:[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 25.57, 25.71, 25.81, 25.91, 26.0, 26.12, 26.2, 26.38, 26.59, 26.86, 27.08, 27.16, 27.23, 27.39, 27.61, 27.84, 28.25, 28.8, 29.26, 29.71, 30.16, 30.76, 31.35, 32.06, 32.68, 33.22, 33.68, 34.03, 34.28, 34.43, 34.73, 35.04, 35.44, 35.8, 36.09], borderColor:"#2f9e44", tension:.3, pointRadius:0, borderWidth:1 },
+  ]},
+  options: { responsive:true, plugins:{ legend:{labels:{color:"#e6edf3", font:{size:11}}} },
+    scales: { x:{ grid, ticks:{color:"#8b949e", font:{size:10}, maxRotation:0} },
+              y:{ grid, ticks:{color:"#8b949e"} } } }
+});
+
+new Chart(document.getElementById("volChart"), {
+  type: "bar",
+  data: { labels: labels, datasets:[
+    { label:"成交量（千股）", data:[131022.88, 130656.613, 205885.267, 144973.836, 145598.796, 216206.48, 459870.993, 170126.323, 128429.176, 132473.858, 294735.529, 152715.952, 134445.281, 100750.049, 53047.576, 72335.126, 103833.695, 62561.686, 58110.008, 126685.578, 162039.205, 107148.029, 117900.028, 440835.576, 158253.125, 523099.639, 623892.482, 590064.949, 497017.089, 519203.137, 311779.52, 238024.652, 262801.666, 368721.904, 348900.833, 822971.74, 1162430.621, 948644.349, 542503.236, 539771.575, 432086.519, 932903.295, 701554.317, 965082.115, 496834.937, 349688.89, 275388.154, 310360.339, 408283.873, 305718.702, 338885.44, 341960.414, 307312.509, 377897.05], backgroundColor:"rgba(79,70,229,.55)" }
+  ]},
+  options: { responsive:true, plugins:{legend:{display:false}},
+    scales: { x:{ grid, ticks:{color:"#8b949e", font:{size:10}, maxRotation:0} },
+              y:{ grid, ticks:{color:"#8b949e"} } } }
+});
+
+new Chart(document.getElementById("invChart"), {
+  type: "bar",
+  data: { labels: ["10-14", "10-15", "10-16", "10-19", "10-20"], datasets: [
+    { label:"外資", data:[4527.642, -9714.588, 23367.352, 8761.837, -31610.492], backgroundColor:"#e5484d" },
+    { label:"投信", data:[24.0, 234.0, 72.235, 3140.671, 3057.168], backgroundColor:"#4f46e5" },
+    { label:"合計", data:[8338.806, -13793.254, 20447.277, 15391.676, -30301.134], backgroundColor:"#2f9e44" },
+  ]},
+  options: { responsive:true, plugins:{ legend:{labels:{color:"#e6edf3", font:{size:11}}} },
+    scales: { x:{ grid, ticks:{color:"#8b949e"} },
+              y:{ grid, ticks:{color:"#8b949e"} } } }
+});
+</script>
+</body>
+</html>
