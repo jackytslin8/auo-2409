@@ -1,163 +1,54 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>友達(2409) 盤後解析 20261102</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<html lang="zh-TW"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>友達 2409 盤後分析 2026-11-03</title>
 <style>
-  :root {
-    --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#e6edf3; --muted:#8b949e;
-    --up:#e5484d; --down:#2f9e44; --accent:#4f46e5;
-  }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:var(--bg); color:var(--text);
-    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
-    padding:24px; max-width:1080px; margin:0 auto; }
-  h1 { font-size:22px; margin-bottom:4px; }
-  .sub { color:var(--muted); font-size:13px; margin-bottom:18px; }
-  .price-line { font-size:38px; font-weight:700; color:#e5484d; }
-  .chg { font-size:15px; color:#e5484d; margin-bottom:16px; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px;
-    margin:16px 0 24px; }
-  .card { background:var(--card); border:1px solid var(--border); border-radius:10px;
-    padding:14px 16px; }
-  .card .k { color:var(--muted); font-size:12px; margin-bottom:4px; }
-  .card .v { font-size:19px; font-weight:600; }
-  .up { color:var(--up); } .down { color:var(--down); }
-  .chart-card { background:var(--card); border:1px solid var(--border); border-radius:10px;
-    padding:18px; margin-bottom:20px; }
-  .chart-card h2 { font-size:15px; margin-bottom:12px; font-weight:600; }
-  .section { font-size:17px; font-weight:700; margin:26px 0 12px;
-    border-left:4px solid var(--accent); padding-left:10px; }
-  ul { list-style:none; }
-  li { padding:6px 0 6px 16px; position:relative; color:var(--text); font-size:14px;
-    line-height:1.7; }
-  li::before { content:"▸"; position:absolute; left:0; color:var(--accent); }
-  table { width:100%; border-collapse:collapse; font-size:13px; margin-top:8px; }
-  th, td { padding:8px 10px; border-bottom:1px solid var(--border); text-align:right; }
-  th { color:var(--muted); font-weight:500; text-align:right; }
-  td:first-child, th:first-child { text-align:left; }
-  footer { color:var(--muted); font-size:11px; margin-top:28px; border-top:1px solid var(--border);
-    padding-top:12px; line-height:1.8; }
-</style>
-</head>
-<body>
-
-<h1>友達（2409）盤後解析</h1>
-<div class="sub">資料日期：2026-11-02 · 台北時間 2026-11-02 17:00 產出 · 資料來源：TWSE OpenAPI</div>
-
-<div class="price-line">30.75</div>
-<div class="chg">▲ +0.33%（前收 30.65）</div>
-
-<div class="grid">
-  <div class="card"><div class="k">開盤 / 最高 / 最低</div><div class="v" style="font-size:15px">29.20 / 31.25 / 29.10</div></div>
-  <div class="card"><div class="k">成交量</div><div class="v">221.1 萬張</div></div>
-  <div class="card"><div class="k">20 日均量</div><div class="v">405.2 萬張</div></div>
-  <div class="card"><div class="k">量比（今日 / 20日）</div><div class="v">0.55</div></div>
-  <div class="card"><div class="k">MA5 / MA10 / MA20</div><div class="v" style="font-size:15px">32.89 / 34.55 / 35.80</div></div>
-  <div class="card"><div class="k">距 MA20</div><div class="v down">-14.1%</div></div>
-  <div class="card"><div class="k">RSI 14</div><div class="v">36.1</div></div>
-  <div class="card"><div class="k">3 個月高 / 低</div><div class="v" style="font-size:15px">43.55 / 26.05</div></div>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI","Microsoft JhengHei",sans-serif}
+body{background:#f1f5f9;color:#1e293b;min-height:100vh;padding:24px 16px}
+.card{max-width:640px;margin:0 auto;background:#ffffff;border-radius:18px;padding:26px 24px;box-shadow:0 4px 20px rgba(0,0,0,.1)}
+h1{font-size:1.3rem;color:#0f172a} .sub{color:#64748b;font-size:.8rem;margin-top:4px}
+.price-block{display:flex;gap:18px;align-items:baseline;margin:18px 0}
+.price{font-size:2.4rem;font-weight:800} .chg{font-size:1rem;font-weight:700}
+.up{color:#dc2626} .down{color:#16a34a}
+.light{display:inline-block;margin:4px 6px 0 0;padding:5px 12px;border-radius:20px;font-size:.8rem;font-weight:600}
+.light.on{background:#dcfce7;color:#16a34a;border:1px solid #86efac}
+.light.off{background:#f1f5f9;color:#94a3b8;border:1px solid #cbd5e1}
+h2{font-size:.95rem;color:#1d4ed8;margin:20px 0 8px}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+.inst th,.inst td{padding:6px 8px;border-bottom:1px solid #e2e8f0;text-align:left;color:#334155}
+.inst .tot{font-weight:800;color:#0f172a}
+ul.news{padding-left:18px} ul.news li{margin:6px 0;font-size:.88rem;line-height:1.5;color:#334155}
+a{color:#2563eb} .muted{color:#94a3b8;font-size:.85rem}
+.analysis li{margin:8px 0 8px 18px;font-size:.9rem;line-height:1.6;color:#334155}
+.pts td{padding:4px 8px;border-bottom:1px solid #e2e8f0;color:#334155}
+.footer{margin-top:22px;font-size:.75rem;color:#94a3b8;line-height:1.7}
+</style></head><body>
+<div class="card">
+<h1>🖥️ 友達 2409・每日盤後分析</h1>
+<div class="sub">2026-11-03（週二・17:00 自動更新）</div>
+<div class="price-block">
+<div class="price down">28.80</div>
+<div><div class="chg down">-6.34%（20261103）</div>
+<div class="muted">成交量 206566 張</div></div>
 </div>
+<div class="muted" style="margin-bottom:2px">訊號面板</div>
+<span class="light on">🔥 206,566 張（突破門檻 20,000）</span><span class="light off">🟡 外資賣超 -315.9萬</span><span class="light on">🟢 投信買超 +1.6萬</span><span class="light off">📰 無相關新聞</span>
+<h2>💡 當日分析</h2>
+<ul class="analysis"><li>目標價 40：現價 28.8，距目標 +38.9%。</li><li>賣點 40.0 / 42.41 / 45.0：已站過 0 個。</li><li>停損 33.5：⚠️ 已跌破，留意外資是否撤退。</li><li>三大法人（2026-11-03）賣超 639.7萬 股，其中外資 賣超 315.9萬 股。</li><li>四項訊號亮燈 2/4，未達主升段（需 ≥3）。</li><li>今日新聞 4 則，關鍵訊息已列於下方。</li></ul>
 
-<div class="chart-card">
-  <h2>收盤價與均線（近 3 個月）</h2>
-  <canvas id="priceChart"></canvas>
-</div>
-
-<div class="chart-card">
-  <h2>成交量（千股）</h2>
-  <canvas id="volChart"></canvas>
-</div>
-
-<div class="chart-card">
-  <h2>三大法人買賣超（近 5 日，張）</h2>
-  <canvas id="invChart"></canvas>
-</div>
-
-<div class="section">籌碼面</div>
-<table>
-  <tr><th>項目</th><th>買進</th><th>賣出</th><th>買賣超</th></tr>
-  <tr><td>外資（不含自營）</td><td colspan="3" style="text-align:right">+12,372 張</td></tr>
-  <tr><td>投信</td><td colspan="3" style="text-align:right">-1,328 張</td></tr>
-  <tr><td>自營商（含避險）</td><td colspan="3" style="text-align:right">-3,117 張</td></tr>
-  <tr><td><b>三大合計</b></td><td colspan="3" style="text-align:right"><b>+10,866 張</b></td></tr>
+<h2>🏦 三大法人買賣超（2026-11-03）</h2>
+<table class="inst">
+<tr><th></th><th>外資</th><th>投信</th><th>券商</th></tr>
+<tr><td>淨買超（万股）</td><td>-315.9 萬</td><td>+1.6 萬</td><td>-325.4 萬</td></tr>
+<tr><td>合計</td><td colspan="3" class="tot">-639.7 萬 股</td></tr>
 </table>
-
-<div class="section">估值</div>
-<div class="grid">
-  <div class="card"><div class="k">本益比</div><div class="v">128.13</div></div>
-  <div class="card"><div class="k">股價淨值比</div><div class="v">1.50</div></div>
-  <div class="card"><div class="k">殖利率</div><div class="v">1.30%</div></div>
+<h2>📰 今日新聞</h2><ul class="news"><li><a href="https://news.google.com/rss/articles/CBMixANBVV95cUxPOTV5akJPYzVWN3ZOX1FIaFE3eWpBUGtEUEhqbE44Ykp0MHpfLTI5WlEtaEw5Ul9hVDQ1bElfaVVjaHlFZzVIS0ZWQXRaejJ5eFdEV3BfYk9UNEt0aWQ3UndCbERKNGlSczZaVXEtSTE0VjNTUkpFQjN6R1VOLXBaaUxlcEdPQ0xZUHhkSUlnUzFSRnEwM0x2WS1lQVc0aDdNek1PTHkwbnA3Sk10N05KUDl1S1pfRzU4MEt3TXpGb1BIOG5GWmlfZjJoUFVwNVNEVVg0MlM2ZzVBTmNxZ1hLd3Q5SGJoVXhLbUZuekhLM193cEVGZDVwMW1OVDBHamFmVHRNU2U5SERrNUpSNFhncXgydWhyaDYySnloMGlqRlpqVW1IZVMtZ0wtMTZ0ZkdRa2RVOTBLUkZaaXY5VWFqbW5qZzRHdjZScTBfSW51U1dMZGRqWS1KS0RfNjVDalBBLWhpVXJjY0NOeHNIb2RYa1BWWkoxVThYMHFyZU1jdV81WHZGdkdLT1hiWHdhLTBHZ1R4WFc3NzVuUWdLM01WQ2kyR1l1VUFWWFVDOTU5SE1QQzUta192YS1RYko1ZW02UHJsdQ?oc=5" target="_blank" rel="noopener">面板雙虎跌逾3%！友達、群創能進場嗎？分析師揭止跌關鍵：別急著買 - Yahoo股市</a></li><li><a href="https://news.google.com/rss/articles/CBMi3AJBVV95cUxPUXZHSkJSRHJjUEcwekFBQW9LTjcxWUlKRFUxUTZZTlpmUVdCMkJWNDJxRi1uc01kT1Z6ekprUHhlWC1pNEZuOVJRck5UUHdvVDJuaGdJUEtzSlNvM1A5WnJsQkVxOE50bkhjbDcxLWoxdWJITjRrdF8tbko3V0s0d2hOcFpMNURMSlY2QklsQkk5QTZkdndBazFTeGp1N3J1bDB2emZsUkd0SHZIbjdWdXFrVUtVX0ZUMzdOSjZBZk5rVE93dGhZTWdycEZtdnBwa0MzZlZwWVQ2WV90WU9QUmJFUDBUNVpXSGxqM1lBNnlTMG5XWVo1amRsVEFmWGZ1aE5xeTduZm0xNDVQM28tdDNiRnF6cV8wbjRRSG1QU2FuTDhhRWQ1WnZHTGQ2eFZiMUM3d3gtbHZTaGVJMUJZUzZJWDJ4RXBEYjJwZ1hZVWxmako4bV8wazRIb2s?oc=5" target="_blank" rel="noopener">聯發科放25年滾33倍！蔡力行揪大家「買我們股票」 - Yahoo股市</a></li><li><a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTE5TNzBRbEN1NWVRT3JJNkpBZzJjMUIyTUdHbnRKLTJCR1JZRGhKZDlLZV9EcDloMjJiRERyWU90WXQ1S3RCMHktVUpobHZrYV9aa1VPVG4xaHU?oc=5" target="_blank" rel="noopener">2409 友達 - 11/2,盤後投顧明牌- 股市爆料同學會 - CMoney</a></li><li><a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTE9adldKcHRHNTd0bnQxbGxlcTl2U3RablJKZzk3WnVhaGtBVFBFSnZYSWplQ2drMmJQanNvbVkzNnNIVXIyNjVnMVBYTFhfN1AxZ3F5WTM4cng?oc=5" target="_blank" rel="noopener">2409 友達 - 🥰友達28.65～32.85，華邦電154.5～169.5 - 股市爆料同學會 - CMoney</a></li></ul>
+<h2>📍 賣點 / 停損參考（9/30 訂定）</h2>
+<table class="pts"><tr><td>40.0</td><td>第一賣點：心理關卡 PBR≈1.55 倍。賣一半</td></tr><tr><td>42.41</td><td>第二賣點：連續漲停價。外資續買才有機會</td></tr><tr><td>45.0</td><td>第三賣點：CPO 題材續燒的上限。PBR 1.7 倍歷史高位</td></tr>
+<tr><td style="color:#dc2626;font-weight:700">33.5</td><td>跌破 33–34 支撐（9/22-24 密集交易區）代表外資走了</td></tr>
+</table>
+<div class="footer">
+資料來源：TWSE MIS API（股價）、TWSE 法人買賣超日報、Google News RSS。<br>
+歷史存檔：<a href="history/">history/</a> ・ 本頁每個交易日 17:00（台北）自動更新。僅供參考，不構成投資建議。
 </div>
-
-<div class="section">📍 賣點分析（白話版）</div>
-<div class="grid">
-  <div class="card"><div class="k">🛡 底線：跌到這裡要走</div><div class="v down">29.10</div></div>
-  <div class="card"><div class="k">🎯 先出一批：反彈到這裡</div><div class="v">35.80</div></div>
-  <div class="card"><div class="k">🎯 再出一批：彈更強的話</div><div class="v">36.52</div></div>
-  <div class="card"><div class="k">🔥 天花板：很難過得去</div><div class="v up">43.55</div></div>
-</div>
-<ul>
-  <li><b>現在是什麼局面？</b>短期均價全部壓在長期均價下面，屬於走弱格局。這種時候股價反彈回來，通常彈到「平均成本線」附近就會被賣壓壓回去——所以反彈是給你下車的機會，不是叫你上車。</li>
-  <li><b>該怎麼賣？</b>如果股價反彈到 <b>35.80</b>（近20天平均成本附近）→ 先賣一部分；如果運氣好彈到 <b>36.52</b>（近60天平均成本）且當天成交量明顯放大 → 再賣一批。分批賣比一次梭哈好，不用猜最高點。</li>
-  <li><b>什麼時候必須走？</b>收盤跌破 <b>29.10</b>（近20天最低點，出現在 2026-11-02）→ 說明這波漲勢確定結束，不要留戀、不要想「再等它回來」，全部出清。虧損擴大都是捨不得停損造成的。</li>
-  <li><b>特別注意：</b>法說會、股東會前後，股價容易大起大落，手上的部位可以先降一些。以上是固定規則算出來的參考，不是叫你一定照做，最後決定還是在你。</li>
-</ul>
-
-<div class="section">📝 今日白話解析</div>
-<ul>
-  <li>今天收 <b>30.75 元</b>，比昨天漲 0.33%。盤中最高 31.25、最低 29.10，一天上下震了 7.0%。</li>
-  <li>今天成交了 221.1 萬張，是過去 20 天平均的 0.55 倍——買賣比平常冷清。</li>
-  <li>用「大家平均幾塊錢買的」來看：近5天買的人平均 32.89 元、近20天買的人平均 35.80 元。現在股價在近20天平均成本之下，短期套牢的人偏多，反彈容易遇到解套賣壓。</li>
-  <li>市場大戶（外資、投信、自營商）今天合計買進 10,866 張，站買方。大戶的動向通常領先散戶，值得留意。</li>
-  <li>近 3 個月股價在 26.05～43.55 之間跑，現在位於這個區間的 27% 位置（0%=最低、100%=最高）。</li>
-</ul>
-
-<footer>
-  本報告由 TWSE OpenAPI 資料自動產生（個股日K STOCK_DAY、三大法人 T86、本益比淨值比 BWIBBU）。<br>
-  資料僅供參考，不構成投資建議；請審酌自身風險承受度。
-</footer>
-
-<script>
-const labels = ["09-01", "09-02", "09-03", "09-04", "09-07", "09-08", "09-09", "09-10", "09-11", "09-14", "09-15", "09-16", "09-17", "09-18", "09-21", "09-22", "09-23", "09-24", "09-29", "09-30", "10-01", "10-02", "10-05", "10-06", "10-07", "10-08", "10-12", "10-13", "10-14", "10-15", "10-16", "10-19", "10-20", "10-21", "10-22", "10-27", "10-28", "10-29", "10-30", "11-02"];
-const grid = { color:"#30363d" };
-const tick = { color:"#8b949e" };
-
-new Chart(document.getElementById("priceChart"), {
-  type: "line",
-  data: { labels: labels, datasets: [
-    { label:"收盤", data:[26.4, 26.4, 26.55, 26.8, 28.7, 29.6, 30.5, 31.2, 30.2, 28.7, 27.9, 29.4, 30.0, 30.35, 33.35, 36.65, 34.7, 34.2, 35.05, 38.55, 38.3, 40.45, 39.05, 37.45, 37.95, 36.6, 35.55, 34.15, 36.25, 34.9, 35.9, 36.7, 35.75, 37.25, 35.4, 33.45, 35.55, 34.05, 30.65, 30.75], borderColor:"#4f46e5", backgroundColor:"rgba(79,70,229,.15)", fill:true, tension:.3, pointRadius:0, borderWidth:2 },
-    { label:"MA5", data:[null, null, null, null, 26.97, 27.61, 28.43, 29.36, 30.04, 30.04, 29.7, 29.48, 29.24, 29.27, 30.2, 31.95, 33.01, 33.85, 34.79, 35.83, 36.16, 37.31, 38.28, 38.76, 38.64, 38.3, 37.32, 36.34, 36.1, 35.49, 35.35, 35.58, 35.9, 36.1, 36.2, 35.71, 35.48, 35.14, 33.82, 32.89], borderColor:"#e5484d", tension:.3, pointRadius:0, borderWidth:1 },
-    { label:"MA20", data:[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 30.76, 31.35, 32.06, 32.68, 33.22, 33.68, 34.03, 34.28, 34.43, 34.73, 35.04, 35.44, 35.8, 36.09, 36.44, 36.54, 36.38, 36.42, 36.41, 36.19, 35.8], borderColor:"#2f9e44", tension:.3, pointRadius:0, borderWidth:1 },
-  ]},
-  options: { responsive:true, plugins:{ legend:{labels:{color:"#e6edf3", font:{size:11}}} },
-    scales: { x:{ grid, ticks:{color:"#8b949e", font:{size:10}, maxRotation:0} },
-              y:{ grid, ticks:{color:"#8b949e"} } } }
-});
-
-new Chart(document.getElementById("volChart"), {
-  type: "bar",
-  data: { labels: labels, datasets:[
-    { label:"成交量（千股）", data:[107148.029, 117900.028, 440835.576, 158253.125, 523099.639, 623892.482, 590064.949, 497017.089, 519203.137, 311779.52, 238024.652, 262801.666, 368721.904, 348900.833, 822971.74, 1162430.621, 948644.349, 542503.236, 539771.575, 432086.519, 932903.295, 701554.317, 965082.115, 496834.937, 349688.89, 275388.154, 310360.339, 408283.873, 305718.702, 338885.44, 341960.414, 307312.509, 377897.05, 305682.716, 292488.173, 339948.257, 251643.874, 283685.066, 296771.84, 221130.229], backgroundColor:"rgba(79,70,229,.55)" }
-  ]},
-  options: { responsive:true, plugins:{legend:{display:false}},
-    scales: { x:{ grid, ticks:{color:"#8b949e", font:{size:10}, maxRotation:0} },
-              y:{ grid, ticks:{color:"#8b949e"} } } }
-});
-
-new Chart(document.getElementById("invChart"), {
-  type: "bar",
-  data: { labels: ["10-27", "10-28", "10-29", "10-30", "11-02"], datasets: [
-    { label:"外資", data:[-95959.953, 68585.188, -50436.463, -28002.424, 12372.289], backgroundColor:"#e5484d" },
-    { label:"投信", data:[3520.162, 181.713, 23.0, -1612.217, -1327.633], backgroundColor:"#4f46e5" },
-    { label:"合計", data:[-95215.058, 77929.628, -56242.692, -36485.21, 10866.11], backgroundColor:"#2f9e44" },
-  ]},
-  options: { responsive:true, plugins:{ legend:{labels:{color:"#e6edf3", font:{size:11}}} },
-    scales: { x:{ grid, ticks:{color:"#8b949e"} },
-              y:{ grid, ticks:{color:"#8b949e"} } } }
-});
-</script>
-</body>
-</html>
+</div></body></html>
